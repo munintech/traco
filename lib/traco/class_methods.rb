@@ -1,7 +1,7 @@
 module Traco
   module ClassMethods
 
-    def locales_for_column(column)
+    def locales_for_column(column, options={})
       column_names.grep(/\A#{column}_([a-z]{2})\z/) {
         $1.to_sym
       }.sort_by { |locale|

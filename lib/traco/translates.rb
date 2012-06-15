@@ -1,6 +1,9 @@
 module Traco
   module Translates
-    def translates(*columns)
+    def translates(*args)
+
+      options = args.last.is_a?(Hash) ? args.pop : {}
+      columns = args
 
       extend Traco::ClassMethods
       include Traco::InstanceMethods
@@ -17,7 +20,7 @@ module Traco
       columns.each do |column|
 
         define_method(column) do
-          read_localized_value(column)
+          read_localized_value(column, options)
         end
 
         define_method("#{column}=") do |value|
