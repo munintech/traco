@@ -19,7 +19,7 @@ module Traco
       fallback_locales =
         if fallback = options[:fallback]
           if fallback.is_a?(Proc)
-            fallback.call(self)
+            fallback.call(self, column)
           else
             Array(fallback)
           end.map(&:to_sym)
